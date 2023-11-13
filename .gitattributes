@@ -1,0 +1,2 @@
+*.FILE filter=lfs diff=lfs merge=lfs -text
+assignment_flutter2/build[[:space:]]2/ios/Debug-iphonesimulator/gRPC-Core/grpc.framework/grpc filter=lfs diff=lfs merge=lfs -text
