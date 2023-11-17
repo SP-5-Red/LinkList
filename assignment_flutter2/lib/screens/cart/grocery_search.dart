@@ -1,5 +1,6 @@
 import 'package:assignment_flutter/screens/cart/cart.dart';
 import 'package:flutter/material.dart';
+import 'package:assignment_flutter/screens/user_colors.dart';
 
 class GrocerySearch extends SearchDelegate<String> {
   final List<String> groceryItems = [
@@ -50,6 +51,7 @@ class GrocerySearch extends SearchDelegate<String> {
   @override
   Widget buildResults(BuildContext context) => Center(
         child: Column(
+
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
@@ -69,10 +71,12 @@ class GrocerySearch extends SearchDelegate<String> {
 
             return itemLower.contains(queryLower);
           }).toList();
-    return builSuggestionsSuccess(suggestions);
+    return buildSuggestionsSuccess(suggestions);
   }
 
-  Widget builSuggestionsSuccess(List<String> suggestions) => ListView.builder(
+  Widget buildSuggestionsSuccess(List<String> suggestions) => Container(
+      color: UserColors.getColor(0),
+      child: ListView.builder(
         itemCount: suggestions.length,
         itemBuilder: (context, index) {
           final suggestion = suggestions[index];
@@ -91,7 +95,12 @@ class GrocerySearch extends SearchDelegate<String> {
                 close(context, suggestion);
               }
             },
-            title: Text(suggestion),
+            title: Text(
+                style: TextStyle(
+                  color: UserColors.getColor(3)
+                ),
+                suggestion
+            ),
             trailing: Container(
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(
@@ -99,12 +108,13 @@ class GrocerySearch extends SearchDelegate<String> {
                 ),
                 color: Color.fromARGB(255, 181, 180, 180),
               ),
-              child: const Icon(
+              child: Icon(
                 Icons.add,
-                color: Color.fromARGB(255, 3, 139, 7),
+                color: UserColors.getColor(1),
               ),
             ),
           );
         },
-      );
+      )
+  );
 }

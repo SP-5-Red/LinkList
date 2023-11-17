@@ -1,10 +1,8 @@
 import 'package:assignment_flutter/screens/change_password/change_password_screen.dart';
 import 'package:assignment_flutter/screens/home/home_controller.dart';
 import 'package:assignment_flutter/screens/home/home_screen.dart';
-import 'package:assignment_flutter/screens/launch/launch_screen.dart';
+import 'package:assignment_flutter/screens/user_colors.dart';
 import 'package:assignment_flutter/screens/setting/setting_controller.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,9 +14,9 @@ class SettingScreen extends StatelessWidget {
     return GetBuilder<SettingController>(
         init: SettingController(),
         builder: (setting)=>Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: UserColors.getColor(0),
         appBar: AppBar(
-          backgroundColor: Colors.green,
+          backgroundColor: UserColors.getColor(1),
           centerTitle: true,
           title: Text('SETTINGS'),
         leading: IconButton(
@@ -50,6 +48,8 @@ class SettingScreen extends StatelessWidget {
                             width: 3,
                           )
                       ),
+                      fillColor: Colors.white,
+                      filled: true,
                       labelText: 'First Name'
                   ),),
               SizedBox(height: Get.height  * 0.02,),
@@ -63,6 +63,8 @@ class SettingScreen extends StatelessWidget {
                           width: 3,
                         )
                     ),
+                    fillColor: Colors.white,
+                    filled: true,
                     labelText: 'Phone'
                 ),),
               SizedBox(height: Get.height  * 0.02,),
@@ -76,6 +78,8 @@ class SettingScreen extends StatelessWidget {
                         width: 3,
                       )
                   ),
+                  fillColor: Colors.white,
+                  filled: true,
                   labelText: 'Last Name',
 
                 ),),
@@ -91,6 +95,8 @@ class SettingScreen extends StatelessWidget {
                         width: 3,
                       )
                   ),
+                   fillColor: Colors.white,
+                   filled: true,
                   labelText: 'Username',
 
                 ),),
@@ -104,19 +110,21 @@ class SettingScreen extends StatelessWidget {
                         width: 3,
                       )
                   ),
+                   fillColor: Colors.white,
+                   filled: true,
                   labelText: 'Email',
 
                 ),),
 
 
               SizedBox(height: Get.height  * 0.03,),
-              ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: Colors.green,padding: EdgeInsets.all(15)),
+              ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: UserColors.getColor(1),padding: EdgeInsets.all(15)),
                 onPressed: (){
             setting.updateProfile();
                 },child: Text('UPDATE PROFILE'),),
               SizedBox(height: Get.height  * 0.02,),
 
-              ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: Colors.green,padding: EdgeInsets.all(15)),
+              ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: UserColors.getColor(1),padding: EdgeInsets.all(15)),
                 onPressed: (){
 
                  Get.to(()=>ChangePasswordScreen());

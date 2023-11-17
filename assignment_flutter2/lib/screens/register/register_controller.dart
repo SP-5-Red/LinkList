@@ -67,10 +67,10 @@ createAccount() async{
       password: passwordController.text.toString(),
     );
     CollectionReference users = FirebaseFirestore.instance.collection('users');
-    Map<String,String> data = {
+    Map<String,dynamic> data = {
       'first_name':firstNameController.text.toString(), 'last_name':lastNameController.text.toString(),
-      'email':emailController.text.toString(), 'username':userNameController.text.toString(),
-      'phone':phoneController.text.toString()
+      'email':emailController.text.toString().toLowerCase(), 'username':userNameController.text.toString(),
+      'phone':phoneController.text.toString(), 'theme': [0,0],
     };
     users.add(data).then((value) {
       MessageBox.showInSnackBar(Get.context!,'Account Created. Please Login');

@@ -1,16 +1,10 @@
-# assignment_flutter
+# LinkList
 
-A new Flutter project.
+A grocery app for both IOS and Android that allows users to synchronously edit and share grocery lists.
 
-## Getting Started
+## Creators
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Aly Hussein
+Joel Juarez
+Mohammed Shabban
+Jeff Williams

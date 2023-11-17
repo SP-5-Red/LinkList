@@ -1,7 +1,9 @@
 import 'package:assignment_flutter/screens/create_group/create_group_screen.dart';
 import 'package:assignment_flutter/screens/addTo_group/addTo_group_screen.dart';
+import 'package:assignment_flutter/screens/customization/customization_screen.dart';
 import 'package:assignment_flutter/screens/home/home_controller.dart';
 import 'package:assignment_flutter/screens/setting/setting_screen.dart';
+import 'package:assignment_flutter/screens/user_colors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,9 +16,15 @@ class HomeScreen extends StatelessWidget {
     return GetBuilder<HomeController>(
         init: HomeController(),
         builder: (home)=>Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: UserColors.getColor(0),
         appBar: AppBar(
-          backgroundColor: Colors.green,
+          leading: GestureDetector(
+            onTap: (){
+              Get.to(()=>CustomizationScreen());
+            },
+            child: Icon(Icons.account_tree_outlined,color: Colors.white,),
+          ),
+          backgroundColor: UserColors.getColor(1),
           centerTitle: true,
           title: Text('LINKLIST'),automaticallyImplyLeading: true,
           actions: [
@@ -32,7 +40,7 @@ class HomeScreen extends StatelessWidget {
               onTap: (){
                 Get.to(()=>SettingScreen());
               },
-              child: Icon(Icons.settings,color: Colors.white,),
+              child: Icon(Icons.settings,color: Colors.white),
             ),
             SizedBox(width: 15,)
           ],
@@ -43,9 +51,9 @@ class HomeScreen extends StatelessWidget {
             child: Column (
           children: [
             SizedBox(height: Get.height  * 0.03,),
-            Text('Groups',style: TextStyle(color: Colors.green,fontSize: Get.height * 0.035, decoration: TextDecoration.underline),),
+            Text('Groups',style: TextStyle(color: UserColors.getColor(1),fontSize: Get.height * 0.035, decoration: TextDecoration.underline),),
             SizedBox(height: Get.height  * 0.01,),
-            Container(color: Colors.white,
+            Container(color: UserColors.getColor(0),
               padding: EdgeInsets.all(15.0),
                 height: Get.height * 0.4,
               // get all groups
@@ -57,10 +65,10 @@ class HomeScreen extends StatelessWidget {
                         itemCount: snapshot.data!.docs.length,
                         itemBuilder: (context, index) {
                           return   Container(
-                              color: Colors.green.shade50,child:InkWell(child:
+                              color: UserColors.getColor(2),child:InkWell(child:
                           Row(children: [
                             Container(
-                              color: Colors.green.shade50,
+                              color: UserColors.getColor(2),
                               padding: EdgeInsets.all(15.0),
                               child: Text(
                                 snapshot.data!.docs[index].get('group_name'),style: TextStyle(color: Colors.black,fontSize: Get.height * 0.02),
@@ -101,9 +109,9 @@ class HomeScreen extends StatelessWidget {
                     }
                   })),
             SizedBox(height: Get.height  * 0.04,),
-            Text('Invites',style: TextStyle(color: Colors.green,fontSize: Get.height * 0.035, decoration: TextDecoration.underline),),
+            Text('Invites',style: TextStyle(color: UserColors.getColor(1),fontSize: Get.height * 0.035, decoration: TextDecoration.underline),),
             SizedBox(height: Get.height  * 0.01,),
-            Container(color: Colors.white,
+            Container(color: UserColors.getColor(0),
                 padding: EdgeInsets.all(15.0),
                 height: Get.height * 0.3,
                 // get all groups
@@ -119,10 +127,10 @@ class HomeScreen extends StatelessWidget {
                               return Container(child: Text('Invite Expired',style: TextStyle(color: Colors.black,fontSize: Get.height * 0.02)),);
                             }
                             return   Container(
-                                color: Colors.green.shade50,child:InkWell(child:
+                                color: UserColors.getColor(2),child:InkWell(child:
                             Row(children: [
                               Container(
-                                color: Colors.green.shade50,
+                                color: UserColors.getColor(2),
                                 padding: EdgeInsets.all(15.0),
                                 width: Get.width - (Get.width * 0.2),
                                 child: Text(

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../reports/report_screen.dart';
 import 'grocery_search.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:assignment_flutter/screens/user_colors.dart';
 
 List groceryCart = [];
 final List<String> recentSearch = [];
@@ -46,7 +47,7 @@ class _CartState extends State<Cart> {
         titleTextStyle: const TextStyle(
           fontSize: 30,
         ),
-        backgroundColor: Colors.green,
+        backgroundColor: UserColors.getColor(1),
         actions: [
           GestureDetector(
             onTap: (){
@@ -68,15 +69,17 @@ class _CartState extends State<Cart> {
           )
         ],
       ),
-      body: Column(
+      body: Container (
+        color: UserColors.getColor(0),
+        child: Column(
         children: [
-          const Padding(
+          Padding(
             padding: EdgeInsets.all(30.0),
             child: Center(
               child: Text(
                 'Your Grocery List',
                 style: TextStyle(
-                  color: Colors.black,
+                  color: UserColors.getColor(3),
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
                 ),
@@ -118,11 +121,11 @@ class _CartState extends State<Cart> {
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
                               height: 75,
-                              decoration: const BoxDecoration(
+                              decoration: BoxDecoration(
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(18),
                                 ),
-                                color: Colors.green,
+                                color: UserColors.getColor(1),
                               ),
                               child: Center(
                                 child: Text(
@@ -143,7 +146,7 @@ class _CartState extends State<Cart> {
           ),
         ],
       ),
-    );
+    ));
   }
 
   void addItem(item) async {

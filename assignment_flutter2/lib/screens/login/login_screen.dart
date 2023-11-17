@@ -1,6 +1,4 @@
-import 'package:assignment_flutter/screens/home/home_screen.dart';
 import 'package:assignment_flutter/screens/login/login_controller.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

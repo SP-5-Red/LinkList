@@ -1,6 +1,6 @@
 import 'package:assignment_flutter/screens/addTo_group/addTo_group_controller.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:assignment_flutter/screens/user_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,9 +15,9 @@ class AddToGroupScreen extends StatelessWidget {
         init: AddToGroupController(),
         builder: (member) =>
             Scaffold(
-                backgroundColor: Colors.white,
+                backgroundColor: UserColors.getColor(0),
                 appBar: AppBar(
-                  backgroundColor: Colors.green,
+                  backgroundColor: UserColors.getColor(1),
                   centerTitle: true,
                   title: Text('MEMBERS'),
                   automaticallyImplyLeading: true,
@@ -29,24 +29,26 @@ class AddToGroupScreen extends StatelessWidget {
                     Center( child: Column (
                     children: [
                       SizedBox(height: Get.height  * 0.05,),
-                      Text('Invite New Member',style: TextStyle(color: Colors.green,fontSize: Get.height * 0.03)),
+                      Text('Invite New Member',style: TextStyle(color: UserColors.getColor(1),fontSize: Get.height * 0.03)),
                       SizedBox(height: Get.height  * 0.05,),
                       SizedBox(width: Get.width - (Get.width * 0.2), child: TextField(
                         controller: member.email,
                         decoration: const InputDecoration(
                             border:  OutlineInputBorder( //Outline border type for TextField
                                 borderSide: BorderSide(
-                                  color:Colors.redAccent,
+                                  color: Colors.redAccent,
                                   width: 3,
                                 )
                             ),
+                            fillColor: Colors.white,
+                            filled: true,
                             labelText: 'Email'
                         ),),),
 
 
                       SizedBox(height: Get.height  * 0.03,),
 
-                      member.isLoad ? const Center(child:CircularProgressIndicator(color: Colors.green,)) : ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: Colors.green,padding: EdgeInsets.all(15)),
+                      member.isLoad ? Center(child:CircularProgressIndicator(color: UserColors.getColor(1),)) : ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: UserColors.getColor(1),padding: EdgeInsets.all(15)),
                         onPressed: () async{
                           FocusManager.instance.primaryFocus?.unfocus();
 
@@ -56,11 +58,11 @@ class AddToGroupScreen extends StatelessWidget {
 
                         },child: Text('SEND INVITE'),),
                       SizedBox(height: Get.height  * 0.09,),
-                      Text('Current Members',style: TextStyle(color: Colors.green,fontSize: Get.height * 0.035, decoration: TextDecoration.underline),),
+                      Text('Current Members',style: TextStyle(color: UserColors.getColor(1),fontSize: Get.height * 0.035, decoration: TextDecoration.underline),),
                       SizedBox(height: Get.height  * 0.01,),
                       Container (
                           height: Get.height * 0.5,
-                          color: Colors.white,
+                          color: UserColors.getColor(0),
                           padding: EdgeInsets.all(15.0),
                           child: StreamBuilder(
                               stream: FirebaseFirestore.instance.collection('groups').doc(docAccess).snapshots(),
@@ -71,11 +73,11 @@ class AddToGroupScreen extends StatelessWidget {
                                     itemCount: memberList.length,
                                     itemBuilder: (context, index) {
                                       return   Container(
-                                          color: Colors.green.shade50,child:InkWell(child:
+                                          color: UserColors.getColor(2),child:InkWell(child:
                                       Row(
                                           children: [
                                         Container(
-                                          color: Colors.green.shade50,
+                                          color: UserColors.getColor(2),
                                           padding: EdgeInsets.all(15.0),
                                           child: Text(
                                             memberList[index],style: TextStyle(color: Colors.black,fontSize: Get.height * 0.02),
