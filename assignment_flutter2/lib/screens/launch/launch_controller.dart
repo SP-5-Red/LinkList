@@ -13,8 +13,7 @@ class LaunchController extends GetxController{
   checkLogin(){
     if(box.read('email') != null){
       isLoggedIn = true;
-      UserColors.getTheme();
-      box.write('theme', UserColors.theme);
+      box.write('theme', [0,0]);
       update();
       Get.delete<HomeController>();
       Get.offAll(()=>HomeScreen());
