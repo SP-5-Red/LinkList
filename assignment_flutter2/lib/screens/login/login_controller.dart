@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../../MessageBox.dart';
+import '../home/home_controller.dart';
+import '../user_colors.dart';
 
 class LoginController extends GetxController{
   TextEditingController emailController = TextEditingController();
@@ -40,17 +42,18 @@ class LoginController extends GetxController{
     isLoad = true;
     update();
     try {
-     var user = await FirebaseAuth.instance.signInWithEmailAndPassword(
+     await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: emailController.text.toString(),
           password: passwordController.text.toString()
       );
 
-     box.write('email', emailController.text.toString());
+     box.write('email', emailController.text.toString().toLowerCase());
      box.write('password', passwordController.text.toString());
+     box.write('theme', UserColors.theme);
 
       isLoad = false;
       update();
-
+      Get.delete<HomeController>();
       Get.offAll(()=>HomeScreen());
     } on FirebaseAuthException catch (e) {
       isLoad = false;

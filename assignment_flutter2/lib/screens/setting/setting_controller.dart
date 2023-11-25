@@ -9,6 +9,7 @@ import 'package:get_storage/get_storage.dart';
 
 import '../../MessageBox.dart';
 import '../launch/launch_screen.dart';
+import '../user_colors.dart';
 
 class SettingController extends GetxController{
 
@@ -50,6 +51,8 @@ var docID;
   logoutUser(){
     FirebaseAuth.instance.signOut();
     box.erase();
+    box.write('theme', [0, 0]);
+    UserColors.theme = [0, 0];
     Get.offAll(()=>LaunchScreen());
   }
 
@@ -60,12 +63,13 @@ updateProfile(){
       checkEmailVerified();
     }
     else{
-      Map<String,String> data = {
+      Map<String, dynamic> data = {
         'first_name':firstNameController.text.toString(),
         'last_name':lastNameController.text.toString(),
         'email':box.read('email'),
         'username':userNameController.text.toString(),
-        'phone':phoneController.text.toString()
+        'phone':phoneController.text.toString(),
+        'theme': UserColors.theme
       };
       users.doc(docID).set(data).then((value) {
         MessageBox.showInSnackBar(Get.context!, 'Profile Updated.');
@@ -122,12 +126,13 @@ updateProfile(){
     }
     CollectionReference users = FirebaseFirestore.instance.collection('users');
 
-    Map<String,String> data = {
+    Map<String,dynamic> data = {
       'first_name':firstNameController.text.toString(),
       'last_name':lastNameController.text.toString(),
       'email':emailController.text.toString(),
       'username':userNameController.text.toString(),
-      'phone':phoneController.text.toString()
+      'phone':phoneController.text.toString(),
+      'theme': UserColors.theme
     };
     users.doc(docID).set(data).then((value) {
       MessageBox.showInSnackBar(Get.context!, 'Profile Updated.');

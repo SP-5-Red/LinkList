@@ -1,5 +1,5 @@
 import 'package:assignment_flutter/screens/change_password/change_password_controller.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:assignment_flutter/screens/user_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,9 +12,9 @@ class ChangePasswordScreen extends StatelessWidget {
         init: ChangePasswordController(),
         builder: (password)=>
             Scaffold(
-                backgroundColor: Colors.white,
+                backgroundColor: UserColors.getColor(0),
                 appBar: AppBar(
-                  backgroundColor: Colors.green,
+                  backgroundColor: UserColors.getColor(1),
                   centerTitle: true,
                   title: Text('PASSWORD'),
                   automaticallyImplyLeading: true,
@@ -39,12 +39,14 @@ class ChangePasswordScreen extends StatelessWidget {
                                     },
                                     child: Icon(password.isPasswordVisible ? Icons.visibility_off : Icons.visibility),
                                   ),
-                                  border:  const OutlineInputBorder( //Outline border type for TextFeild
+                                  border:  const OutlineInputBorder( //Outline border type for TextField
                                       borderSide: BorderSide(
                                         color:Colors.redAccent,
                                         width: 3,
                                       )
                                   ),
+                                  fillColor: Colors.white,
+                                  filled: true,
                                   labelText: 'Old Password'
                               ),),
                             SizedBox(height: Get.height  * 0.02,),
@@ -59,12 +61,14 @@ class ChangePasswordScreen extends StatelessWidget {
                                     },
                                     child: Icon(password.isNewPasswordVisible ? Icons.visibility_off : Icons.visibility),
                                   ),
-                                  border: const OutlineInputBorder( //Outline border type for TextFeild
+                                  border: const OutlineInputBorder( //Outline border type for TextField
                                       borderSide: BorderSide(
                                         color:Colors.redAccent,
                                         width: 3,
                                       )
                                   ),
+                                  fillColor: Colors.white,
+                                  filled: true,
                                   labelText: 'New Password'
                               ),),
                             SizedBox(height: Get.height  * 0.02,),
@@ -78,17 +82,19 @@ class ChangePasswordScreen extends StatelessWidget {
                                     },
                                     child: Icon(password.isConfirmNewPasswordVisible ? Icons.visibility_off : Icons.visibility),
                                   ),
-                                  border: const   OutlineInputBorder( //Outline border type for TextFeild
+                                  border: const   OutlineInputBorder( //Outline border type for TextField
                                       borderSide: BorderSide(
                                         color:Colors.redAccent,
                                         width: 3,
                                       )
                                   ),
+                                  fillColor: Colors.white,
+                                  filled: true,
                                   labelText: 'Confirm Password'
                               ),),
 
                             SizedBox(height: Get.height  * 0.03,),
-                            ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: Colors.green,padding: EdgeInsets.all(15)),
+                            ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: UserColors.getColor(1),padding: EdgeInsets.all(15)),
                               onPressed: (){
                                 FocusManager.instance.primaryFocus?.unfocus();
                                 if(password.checkForm()){
