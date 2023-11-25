@@ -51,6 +51,8 @@ var docID;
   logoutUser(){
     FirebaseAuth.instance.signOut();
     box.erase();
+    box.write('theme', [0, 0]);
+    UserColors.theme = [0, 0];
     Get.offAll(()=>LaunchScreen());
   }
 

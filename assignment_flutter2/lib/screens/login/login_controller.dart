@@ -49,7 +49,6 @@ class LoginController extends GetxController{
 
      box.write('email', emailController.text.toString().toLowerCase());
      box.write('password', passwordController.text.toString());
-     UserColors.getTheme();
      box.write('theme', UserColors.theme);
 
       isLoad = false;

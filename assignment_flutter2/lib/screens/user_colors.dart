@@ -8,13 +8,15 @@ import '../MessageBox.dart';
 class UserColors{
   static final box = GetStorage();
   static List preview_theme = [0, 0];
-  static List theme = [];
+  static List theme = box.read('theme');
+  static bool initialRun = true;
 
   static getTheme() async {
     CollectionReference users = await FirebaseFirestore.instance.collection('users');
     QuerySnapshot user = await users.where('email', isEqualTo: box.read('email')).get();
 
     theme = user.docs.elementAt(0).get('theme') as List;
+    box.write('theme', theme);
   }
 
   static setTheme() async {
@@ -34,6 +36,7 @@ class UserColors{
     users.doc(tmpID).set(data).then((value) {
       MessageBox.showInSnackBar(Get.context!, 'Theme Updated.');
       getTheme();
+      initialRun = true;
     });
   }
 
@@ -94,7 +97,10 @@ class UserColors{
     Gets user preferences from database as a list, first element is light vs.
     dark modes and second is accent color
      */
-    getTheme();
+    if (initialRun) {
+      getTheme();
+      initialRun = false;
+    }
 
     switch (type) {
       case 0:
