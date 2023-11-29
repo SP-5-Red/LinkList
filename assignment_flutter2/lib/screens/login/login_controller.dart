@@ -49,7 +49,7 @@ class LoginController extends GetxController{
 
      box.write('email', emailController.text.toString().toLowerCase());
      box.write('password', passwordController.text.toString());
-     box.write('theme', UserColors.theme);
+     box.write('theme', [0, 0]);
 
       isLoad = false;
       update();
